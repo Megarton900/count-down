@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
+
+<body>
+    <div class="body">
+        <div class="heading">Time that you have to Calculate</div>
+        <div class="timebox">
+           <div class="uu">
+            <input type="text" class="boxbody" readonly value="0">
+            <br>
+            <legend>Days</legend>
+           </div>
+           <div class="uu">
+            <input type="text" class="boxbody" readonly value="0">
+            <br>
+            <legend>Hr</legend>
+           </div>
+
+           <div class="uu">
+            <input type="text" class="boxbody" readonly value="0">
+            <br>
+            <legend>Min</legend>
+           </div>
+           <div class="uu">
+            <input type="text" class="boxbody" readonly value="0">
+            <br>
+            <legend>Sec</legend>
+           </div>
+        </div>
+        <div class="enter">
+            <label for="birthdaytime">Birthday (date and time):</label>
+  <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+  <button class="button-31" role="button" type="Submit" onclick="clock()">Submit</button>
+        </div>
+    </div>
+    <script>
+  const inputs = document.querySelectorAll("input");
+
+function clock() {
+    const timew = document.getElementById("birthdaytime").value;
+
+    setInterval(function () {
+        const end = new Date(timew);
+        const now = new Date();
+        const diff = (end - now) / 1000;
+
+        // Convert into days, hours, minutes, and seconds
+        const days = Math.floor(diff / 3600 / 24);
+        const hours = Math.floor((diff / 3600) % 24);
+        const minutes = Math.floor((diff / 60) % 60);
+        const seconds = Math.floor(diff % 60);
+
+        // Check if values are valid before updating inputs
+        if (!isNaN(days) && !isNaN(hours) && !isNaN(minutes) && !isNaN(seconds)) {
+            inputs[0].value = days;
+            inputs[1].value = hours;
+            inputs[2].value = minutes;
+            inputs[3].value = seconds;
+        }
+    }, 1000);
+}
+
+// Example of calling the clock function
+clock();
+
+
+    </script>
+    
+</body>
+</html>
